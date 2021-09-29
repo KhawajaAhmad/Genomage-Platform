@@ -1,0 +1,104 @@
+.dashboard_sub_main{
+    width: 90%;
+    margin: 0px auto;
+    padding: 0px;
+}
+.dashboard_main{
+    background: #EDEDED;
+    min-height: 100vh;
+}
+.dashboard_table{
+    width: 100%;
+    margin: 20px auto 40px auto;
+    padding: 0px;
+}
+.variant_bar_container{
+    color: #2A3F54;
+    font-size: 14px;
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    vertical-align: 25px
+}
+.variant_bar{
+    margin: 0px;
+    padding: 5px 0px 0px 0px;;
+    height: 30px;
+}
+.dashboard_graph_container{
+    margin: 0px auto 40px auto;
+    padding: 0px;
+    width: 90%;
+}
+.dashboard_table_heading{
+    color: white;
+    letter-spacing: 0.8px;
+    font-size: 14px;
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+    font-weight: bold;
+    padding: 0px;
+    margin: 0px;
+}
+.dash_table_top{
+    background-color: #2A3F54;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    padding: 5px 0px;
+    margin: 0px;
+}
+.dash_table_bottom{
+    border-bottom: 1px solid lightgray;
+    padding: 15px 0px;
+    margin: 15px 5px;
+    background: white;
+    border-radius: 8px;
+}
+.dashboard_table_text{
+    color: #2A3F54;
+    font-size: 14px;
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+    vertical-align: 25px
+}
+.dashboard_table_text1{
+    font-size: 14px;
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+.dashboard_table_percent_box{
+    display: inline-block;
+    width: 20%;
+    text-align: center;
+    padding: 0px;
+    margin: 0px;
+}
+/*.dashboard_table_percent_circle{
+    color: #FD5901;
+    font-size: 30px;
+    font-weight: bolder;
+    display: inline-block;
+}
+.dashboard_table_text_percent{
+    color: #2A3F54;
+    font-size: 12px;
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
+}*/
+.graph1{
+    height: 280px;
+    margin: 10px 15px 0px 0px;
+}
+.graph2{
+    height: 280px;
+    margin: 10px 0px 0px 15px;
+}

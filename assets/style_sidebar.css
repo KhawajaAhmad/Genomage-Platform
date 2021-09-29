@@ -1,0 +1,26 @@
+.sidebar_main{
+    margin: 0px;
+    padding: 20px 0px;
+    min-height: 100vh;
+    background: #2A3F54;
+}
+.sidebar_logo{
+    height: 24px;
+    margin: 0px auto 20px 20px;
+    text-align: left;
+}
+.sidebar_nav_text{
+    font-size: 16px;
+    font-weight: 600;
+    padding: 0px 10px;
+    color: white;
+    display: inline-block;
+}
+.sidebar_nav_img{
+    height: 18px;
+    margin: 0px 0px 0px 0px;
+    display: inline-block;
+}
+.nav_link{
+    text-align: left;
+}
