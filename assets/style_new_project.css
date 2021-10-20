@@ -20,7 +20,7 @@
     padding: 15px 80px 15px 10px;
     margin: 0px 0px 30px 90px;
     /*background: linear-gradient(to top left, #ffffff 2%, #306897 340%);*/
-    background: white;
+    background: #F2F2F2;
     border: 1px solid #2A3F54;
     border-top: 8px solid #2A3F54;
 
@@ -71,4 +71,56 @@ textarea {
     width: 100%;
     font-size: 14px;
     padding: 0px;
+}
+.new_project_save{
+    padding: 2px 20px;
+    margin: 15px 0px 15px 0px;
+    font-size: 14px;
+    font-weight: 500;
+}
+@media only screen and (min-width: 1920px){
+    .new_project_head{
+        font-size: 22px;
+    }
+    .new_project_field{
+        height: 30px;
+        font-size: 18x;
+    }
+    .new_project_label{
+        height: 30px;
+        font-size: 18px;
+    }
+    .new_project_label_bold{
+        height: 30px;
+        font-size: 20px;
+    }
+    .new_project_dropdown{
+        font-size: 18px;
+    }
+    .new_project_save{
+        font-size: 18px;
+    }
+}
+@media only screen and (min-width: 2500px){
+    .new_project_head{
+        font-size: 26px;
+    }
+    .new_project_field{
+        height: 34px;
+        font-size: 22x;
+    }
+    .new_project_label{
+        height: 34px;
+        font-size: 22px;
+    }
+    .new_project_label_bold{
+        height: 34px;
+        font-size: 24px;
+    }
+    .new_project_dropdown{
+        font-size: 22px;
+    }
+    .new_project_save{
+        font-size: 22px;
+    }
 }

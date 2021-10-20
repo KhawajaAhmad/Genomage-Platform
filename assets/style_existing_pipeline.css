@@ -49,3 +49,37 @@
     color: orange;
     display: inline-block;
 }
+@media only screen and (min-width: 1920px){
+    .existing_pipeline_title{
+        font-size: 22px;
+    }
+    .existing_pipeline_btn_text{
+        font-size: 22px;
+    }
+    .existing_pipeline_btn_bullet{
+        font-size: 26px;
+    }
+    .existing_pipeline_btn{
+        padding: 10px 20px 10px 10px;
+    }
+    .existing_pipeline_btn_icon{
+        height: 34px;
+    }
+}
+@media only screen and (min-width: 2500px){
+    .existing_pipeline_title{
+        font-size: 26px;
+    }
+    .existing_pipeline_btn_text{
+        font-size: 26px;
+    }
+    .existing_pipeline_btn_bullet{
+        font-size: 30px;
+    }
+    .existing_pipeline_btn{
+        padding: 10px 20px 10px 10px;
+    }
+    .existing_pipeline_btn_icon{
+        height: 40px;
+    }
+}

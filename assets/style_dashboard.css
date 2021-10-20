@@ -6,11 +6,16 @@
 .dashboard_main{
     background: #EDEDED;
     min-height: 100vh;
+    margin: 0px;
+    padding: 0px;
+
 }
 .dashboard_table{
     width: 100%;
-    margin: 20px auto 40px auto;
+    margin: 0px auto 0px auto;
     padding: 0px;
+    height: 250px;
+    overflow-y: scroll;
 }
 .variant_bar_container{
     color: #2A3F54;
@@ -28,7 +33,7 @@
     height: 30px;
 }
 .dashboard_graph_container{
-    margin: 0px auto 40px auto;
+    margin: 0px auto 0px auto;
     padding: 0px;
     width: 90%;
 }
@@ -46,13 +51,13 @@
 .dash_table_top{
     background-color: #2A3F54;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
-    padding: 5px 0px;
+    padding: 3px 0px;
     margin: 0px;
 }
 .dash_table_bottom{
     border-bottom: 1px solid lightgray;
-    padding: 15px 0px;
-    margin: 15px 5px;
+    padding: 2px 0px;
+    margin: 8px 5px;
     background: white;
     border-radius: 8px;
 }
@@ -64,7 +69,7 @@
     text-align: center;
     padding: 0px;
     margin: 0px;
-    vertical-align: 25px
+    vertical-align: 10px;
 }
 .dashboard_table_text1{
     font-size: 14px;
@@ -73,6 +78,7 @@
     text-align: center;
     padding: 0px;
     margin: 0px;
+    vertical-align: -5px
 }
 .dashboard_table_percent_box{
     display: inline-block;
@@ -80,6 +86,7 @@
     text-align: center;
     padding: 0px;
     margin: 0px;
+    vertical-align: -5px;
 }
 /*.dashboard_table_percent_circle{
     color: #FD5901;
@@ -95,10 +102,76 @@
     margin: 0px;
 }*/
 .graph1{
-    height: 280px;
+    height: 250px;
     margin: 10px 15px 0px 0px;
 }
 .graph2{
-    height: 280px;
+    height: 250px;
     margin: 10px 0px 0px 15px;
+}
+.dashboard_percent{
+    height: 50px;
+}
+@media only screen and (min-width: 1300px){
+    .dashboard_table{
+        margin: 20px auto 15px auto;
+    }
+}
+@media only screen and (min-width: 1920px){
+    .dashboard_table{
+        margin: 30px auto 50px auto;
+        height: 420px;
+    }
+    .dashboard_table_heading{
+        font-size: 18px;
+    }
+    .dash_table_top{
+        padding: 6px 0px;
+    }
+    .dash_table_bottom{
+        margin: 12px 5px;
+        padding: 8px 0px;
+    }
+    .dashboard_table_text{
+        font-size: 18px;
+    }
+    .dashboard_table_text1{
+        font-size: 18px;
+    }
+    .graph1{
+        height: 250px;
+        margin: 10px 15px 0px 0px;
+    }
+    .graph2{
+        height: 250px;
+        margin: 10px 0px 0px 15px;
+    }
+    .dashboard_percent{
+        height: 60px;
+    }
+}
+@media only screen and (min-width: 2500px){
+    .dashboard_table{
+        margin: 40px auto 70px auto;
+        height: 490px;
+    }
+    .dashboard_table_heading{
+        font-size: 22px;
+    }
+    .dash_table_top{
+        padding: 10px 0px;
+    }
+    .dash_table_bottom{
+        margin: 12px 5px;
+        padding: 12px 0px;
+    }
+    .dashboard_table_text{
+        font-size: 22px;
+    }
+    .dashboard_table_text1{
+        font-size: 22px;
+    }
+    .dashboard_percent{
+        height: 70px;
+    }
 }

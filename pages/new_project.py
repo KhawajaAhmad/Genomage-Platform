@@ -55,7 +55,9 @@ def create_layout():
                         className='new_project_dropdown',
                         searchable=False
                     ), xs=12, sm=8, md=9, lg=9, xl=9),
-                ], row=True, className='new_project_form')
+                    dbc.Col(html.Div(dbc.Button("Save", color="success", className="new_project_save"),
+                             style={'text-align': 'right'}), width=12)
+                ], row=True, className='new_project_form'),
             ], className='new_project_form_container')
         ], className="screen_division_right")
     ], className='new_project_main')

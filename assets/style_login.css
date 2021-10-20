@@ -67,3 +67,57 @@
     border: 1px solid #2A3F54 !important;
     box-shadow: none !important;
 }
+@media only screen and (min-width: 1920px){
+    .login_left{
+        padding: 280px 0px 0px 0px;
+    }
+    .login_right{
+        padding: 190px 0px 0px 0px;
+    }
+    .login_white_container{
+        min-height: 350px;
+    }
+    .login_logo{
+        height: 60px;
+    }
+    .login_head{
+        font-size: 28px;
+    }
+    .login_label{
+        font-size: 20px;
+    }
+    .login_field{
+        font-size: 18px;
+        height: 36px;
+    }
+    .login_btn{
+        font-size: 18px;
+    }
+}
+@media only screen and (min-width: 2500px){
+    .login_left{
+        padding: 320px 0px 0px 0px;
+    }
+    .login_right{
+        padding: 230px 0px 0px 0px;
+    }
+    .login_white_container{
+        min-height: 380px;
+    }
+    .login_logo{
+        height: 70px;
+    }
+    .login_head{
+        font-size: 32px;
+    }
+    .login_label{
+        font-size: 24px;
+    }
+    .login_field{
+        font-size: 22px;
+        height: 40px;
+    }
+    .login_btn{
+        font-size: 22px;
+    }
+}

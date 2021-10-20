@@ -24,6 +24,35 @@
 }
 .topbar_profile_icon{
     height: 26px;
-    margin: 0px 0px 3px 0px;
+    margin: 0px 5px 3px 0px;
     padding: 0px;
+}
+.topbar_buttons{
+    padding: 0px;
+    margin: 0px;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+}
+@media only screen and (min-width: 1920px){
+    .topbar_logo{
+        font-size: 30px;
+    }
+    .topbar_notification_icon{
+        height: 27px;
+    }
+    .topbar_profile_icon{
+        height: 29px;
+    }
+}
+@media only screen and (min-width: 2500px){
+    .topbar_logo{
+        font-size: 34px;
+    }
+    .topbar_notification_icon{
+        height: 30px;
+    }
+    .topbar_profile_icon{
+        height: 32px;
+    }
 }

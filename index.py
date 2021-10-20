@@ -1,6 +1,6 @@
 from utils.import_utils import *
 from pages import login_page, dashboard, projects, analysis, tool_library, documentation, new_project, create_pipeline,\
-    get_data, analysis_dashboard, existing_pipeline
+    get_data, analysis_dashboard, existing_pipeline, notification, user_profile
 
 from app import app
 
@@ -35,6 +35,10 @@ def display_page(pathname):
         return analysis_dashboard.create_layout()
     elif pathname == "/existing_pipeline":
         return existing_pipeline.create_layout()
+    elif pathname == "/user_profile":
+        return user_profile.create_layout()
+    elif pathname == "/notification":
+        return notification.create_layout()
     return login_page.create_layout()
 
 

@@ -3,12 +3,12 @@
     padding: 3px 20px 3px 20px;;
     font-size: 14px;
     font-weight: bold;
-    border: 1px solid #10c2ba;
-    color: #10c2ba;
+    border: 1px solid #00A4BD;
+    color: #00A4BD;
 }
 .add_project_btn:hover, .add_project_btn:focus, .add_project_btn:active, .add_project_btn.active,
 .open>.dropdown-toggle.add_project_btn{
-    background-color: #10c2ba !important;
+    background-color: #00A4BD !important;
     color: white !important;
     box-shadow: none !important;
 }
@@ -56,4 +56,26 @@
     border-bottom: 1px solid lightgray;
     padding: 15px 0px;
     margin: 0px;
+}
+@media only screen and (min-width: 1920px){
+    .add_project_btn{
+        font-size: 18px;
+    }
+    .project_table_head{
+        font-size: 18px;
+    }
+    .project_table_text{
+        font-size: 18px;
+    }
+}
+@media only screen and (min-width: 2500px){
+    .add_project_btn{
+        font-size: 22px;
+    }
+    .project_table_head{
+        font-size: 22px;
+    }
+    .project_table_text{
+        font-size: 22px;
+    }
 }

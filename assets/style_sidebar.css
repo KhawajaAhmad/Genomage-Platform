@@ -1,7 +1,7 @@
 .sidebar_main{
     margin: 0px;
     padding: 20px 0px;
-    min-height: 100vh;
+    height: 100vh;
     background: #2A3F54;
 }
 .sidebar_logo{
@@ -23,4 +23,28 @@
 }
 .nav_link{
     text-align: left;
+}
+@media only screen and (min-width: 1920px){
+    .sidebar_logo{
+        height: 27px;
+    }
+    .sidebar_nav_text{
+        font-size: 20px;
+    }
+    .sidebar_nav_img{
+        height: 22px;
+        vertical-align: -6px;
+    }
+}
+@media only screen and (min-width: 2500px){
+    .sidebar_logo{
+        height: 30px;
+    }
+    .sidebar_nav_text{
+        font-size: 24px;
+    }
+    .sidebar_nav_img{
+        height: 26px;
+        vertical-align: -6px;
+    }
 }

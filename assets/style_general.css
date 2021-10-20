@@ -44,3 +44,19 @@
     letter-spacing: 0.5px;
     color: #373737;
 }
+@media only screen and (min-width: 1920px){
+    .screen_division_left{
+        width: 235px;
+    }
+    .screen_division_right{
+        width: calc(100% - 235px);
+    }
+}
+@media only screen and (min-width: 2500px){
+    .screen_division_left{
+        width: 265px;
+    }
+    .screen_division_right{
+        width: calc(100% - 265px);
+    }
+}

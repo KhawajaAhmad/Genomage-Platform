@@ -37,6 +37,7 @@ def percent(value):
                                       hole=.85,
                                       direction='clockwise',
                                       sort=False,
+                                      hoverinfo='skip',
                                       marker=dict(colors=['#5cb323', '#c9c9c9'],
                                                   # line=dict(color='#ffffff', width=2)
                                                   ),
@@ -44,11 +45,11 @@ def percent(value):
                                       )).
                      update_layout({'plot_bgcolor': 'rgba(0,0,0,0)',
                                     'paper_bgcolor': 'rgba(0,0,0,0)',
-                                    'font': dict(family="Arial", size=12, color="#676767"),
+                                    'font': dict(family="Arial", size=9, color="#676767"),
                                     'annotations': [
-                                        dict(text=str(value) + '%', x=0.5, y=0.5, font_size=12, showarrow=False)]
+                                        dict(text=str(value) + '%', x=0.5, y=0.5, font_size=9, showarrow=False)]
                                     }),
-                     style={'height': '65px'},
+                     className="dashboard_percent",
                      config={'displayModeBar': False})
     # return daq.Knob(
     #     id='my-daq-knob',
@@ -109,7 +110,7 @@ def get_variant_completion_bar():
                                     'showlegend': False,
                                     'barmode': 'stack',
                                     }),
-                     style={'height': 15}, config={'displayModeBar': False})
+                     style={'height': 8}, config={'displayModeBar': False})
 
 
 def create_layout():
@@ -189,11 +190,13 @@ def create_layout():
                                                           'Bar-5', 'Bar-6', 'Bar-7', 'Bar-8',
                                                           'Bar-9', 'Bar-10'],
                                                        y=[22, 13, 40, 62, 85, 28, 64, 33, 11, 16],
+                                                       hoverinfo='skip',
                                                        marker=dict(color='#ABE3D6'))).
                                       add_trace(go.Bar(x=['Bar-1', 'Bar-2', 'Bar-3', 'Bar-4',
                                                           'Bar-5', 'Bar-6', 'Bar-7', 'Bar-8',
                                                           'Bar-9', 'Bar-10'],
                                                        y=[22, 3, 40, 62, 85, 28, 64, 33, 11, 16],
+                                                       hoverinfo='skip',
                                                        marker=dict(color='#9CBDC6'),
                                                        )).
                                       update_xaxes(showticklabels=False, showline=True, linewidth=1,
@@ -206,7 +209,7 @@ def create_layout():
                                                      'font': dict(family="Arial", size=12, color="#676767"),
                                                      'xaxis_title': "Time",
                                                      'yaxis_title': "No. of Analysis"}),
-                                      style={'height': 260}, config={'displayModeBar': False})
+                                      style={'height': 240}, config={'displayModeBar': False})
                         ], className='graph1')], width=6),
                         dbc.Col([html.Div([
                             dcc.Graph(figure=go.Figure(layout=layout).
@@ -214,18 +217,20 @@ def create_layout():
                                                           'Bar-5', 'Bar-6', 'Bar-7', 'Bar-8',
                                                           'Bar-9', 'Bar-10'],
                                                        y=[22, 3, 40, 62, 85, 28, 64, 33, 11, 16],
+                                                       hoverinfo='skip',
                                                        marker=dict(color='#ABE3D6'))).
                                       add_trace(go.Scatter(x=['Bar-1', 'Bar-2', 'Bar-3', 'Bar-4',
                                                               'Bar-5', 'Bar-6', 'Bar-7', 'Bar-8',
                                                               'Bar-9', 'Bar-10'],
                                                            y=[22, 3, 40, 62, 85, 28, 64, 33, 11, 16],
+                                                           hoverinfo='skip',
                                                            marker=dict(color='#9CBDC6'),
                                                            mode='lines',
                                                            line_shape='spline')).
                                       update_xaxes(showticklabels=False, showline=True, linewidth=1,
                                                    linecolor='#676767').
-                                      update_yaxes(showticklabels=True,
-                                                   showline=True, linewidth=0.5, linecolor='#E2E2E2').
+                                      update_yaxes(showticklabels=True, showline=True, linewidth=0.5,
+                                                   linecolor='#676767').
                                       update_layout({'plot_bgcolor': 'rgba(0,0,0,0)',
                                                      'paper_bgcolor': 'rgba(0,0,0,0)', 'bargap': 0.45,
                                                      'showlegend': False,
@@ -233,7 +238,7 @@ def create_layout():
                                                      'xaxis_title': "Time",
                                                      'yaxis_title': "No. of Analysis"
                                                      }),
-                                      style={'height': 260}, config={'displayModeBar': False})
+                                      style={'height': 240}, config={'displayModeBar': False})
                         ], className='graph2')], width=6),
                     ], no_gutters=True),
                 ], className='dashboard_graph_container'),

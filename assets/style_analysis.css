@@ -14,24 +14,24 @@
 .analysis_btn1,
 .analysis_btn1:hover, .analysis_btn1:focus, .analysis_btn1:active, .analysis_btn1.active,
 .open>.dropdown-toggle.analysis_btn1{
-    background: #10c2ba !important;
+    background: #00A4BD !important;
     color: white;
     border: none !important;
     box-shadow: none !important;
     margin: 20px 0px 25px 12px;
-    padding: 3px 20px 3px 20px;;
+    padding: 3px 20px 3px 20px;
     font-size: 14px;
     font-weight: bold;
 }
 .analysis_btn2,
 .analysis_btn2:hover, .analysis_btn2:focus, .analysis_btn2:active, .analysis_btn2.active,
 .open>.dropdown-toggle.analysis_btn2{
-    background: white !important;
-    color: #10c2ba;
-    border: 1px solid #10c2ba !important;
+    background: #EDEDED !important;
+    color: #00A4BD;
+    border: 1px solid #00A4BD !important;
     box-shadow: none !important;
     margin: 20px 0px 25px 12px;
-    padding: 3px 20px 3px 20px;;
+    padding: 3px 20px 3px 20px;
     font-size: 14px;
     font-weight: bold;
 }
@@ -73,9 +73,61 @@
     border-bottom: 1px solid lightgray;
     padding: 15px 0px;
     margin: 0px;
-
+}
 .analysis_table_display{
     width: 100%;
-    margin: 20px auto;
+    margin: 0px auto 20px auto;
     padding: 0px;
+}
+@media only screen and (min-width: 1920px){
+    .analysis_btn1,
+    .analysis_btn1:hover, .analysis_btn1:focus, .analysis_btn1:active, .analysis_btn1.active,
+    .open>.dropdown-toggle.analysis_btn1{
+        font-size: 18px;
+        padding: 5px 20px 5px 20px;
+    }
+    .analysis_btn2,
+    .analysis_btn2:hover, .analysis_btn2:focus, .analysis_btn2:active, .analysis_btn2.active,
+    .open>.dropdown-toggle.analysis_btn2{
+        font-size: 18px;
+        padding: 5px 20px 5px 20px;
+    }
+    .analysis_table_head{
+        font-size: 18px;
+    }
+    .analysis_table_text{
+        font-size: 18px;
+    }
+    .analysis_table_text_status{
+        font-size: 20px;
+    }
+    .analysis_table_bottom{
+        padding: 20px 0px;
+    }
+}
+@media only screen and (min-width: 2500px){
+    .analysis_btn1,
+    .analysis_btn1:hover, .analysis_btn1:focus, .analysis_btn1:active, .analysis_btn1.active,
+    .open>.dropdown-toggle.analysis_btn1{
+        font-size: 22px;
+        padding: 5px 20px 5px 20px;
+    }
+    .analysis_btn2,
+    .analysis_btn2:hover, .analysis_btn2:focus, .analysis_btn2:active, .analysis_btn2.active,
+    .open>.dropdown-toggle.analysis_btn2{
+        font-size: 22px;
+        padding: 5px 20px 5px 20px;
+    }
+    .analysis_table_head{
+        font-size: 22px;
+    }
+    .analysis_table_text{
+        font-size: 22px;
+    }
+    .analysis_table_text_status{
+        font-size: 22px;
+    }
+    .analysis_table_bottom{
+        padding: 25px 0px;
+    }
 }
