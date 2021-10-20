@@ -44,4 +44,8 @@ def display_page(pathname):
 
 # host='0.0.0.0', port=80
 if __name__ == '__main__':
+<<<<<<< HEAD
     app.run_server(host='0.0.0.0', port=80)
+=======
+    app.run_server(host='0.0.0.0', port=8080)
+>>>>>>> 698144e1a7ff37145c3c347bda4f1d8c644caa6b
