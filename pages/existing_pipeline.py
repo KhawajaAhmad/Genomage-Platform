@@ -16,17 +16,17 @@ def create_layout():
                     html.P("※", className="existing_pipeline_btn_bullet"),
                     html.P("BWA-GATK", className="existing_pipeline_btn_text"),
                     html.Img(src="assets/right_arrow.png", className="existing_pipeline_btn_icon")
-                ], className="existing_pipeline_btn", href="/get_data"),
+                ], className="existing_pipeline_btn"),
                 dbc.Button([
                     html.P("※", className="existing_pipeline_btn_bullet"),
                     html.P("BWA-DeepVarient", className="existing_pipeline_btn_text"),
                     html.Img(src="assets/right_arrow.png", className="existing_pipeline_btn_icon")
-                ], className="existing_pipeline_btn", href="/get_data"),
+                ], className="existing_pipeline_btn"),
                 dbc.Button([
                     html.P("※", className="existing_pipeline_btn_bullet"),
                     html.P("STAR-DESEQ2", className="existing_pipeline_btn_text"),
                     html.Img(src="assets/right_arrow.png", className="existing_pipeline_btn_icon")
-                ], className="existing_pipeline_btn", href="/get_data")
+                ], className="existing_pipeline_btn")
             ], className="existing_pipeline_sub_main")
         ], className="screen_division_right")
     ], className="existing_pipeline_main")

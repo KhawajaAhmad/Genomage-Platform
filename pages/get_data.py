@@ -264,15 +264,15 @@ def create_layout():
     ], className="get_data_main")
 
 
-@app.callback(Output('get_cytoscape', 'children'), [Input('data-format-store', 'data'), Input('mapping-store', 'data')])
+@app.callback(Output('get_cytoscape', 'children'),
+              [Input('data-format-store', 'data'), Input('mapping-store', 'data')])
 def get_cytoscape(json_object, json_object2):
     data_format_df = pd.read_json(json_object, orient='split')
     data_format = data_format_df.value[0]
 
-    mapping_df = pd.read_json(json_object2, orient='split')
-    mapping = mapping_df.value[0]
-
     if data_format != 'bam':
+        mapping_df = pd.read_json(json_object2, orient='split')
+        mapping = mapping_df.value[0]
         return html.Div([
             get_modal("modal_1", 'close_1', 'upload_1', 'Read fastq'),
             get_modal("modal_2", 'close_2', 'upload_2', 'Read fastq'),
@@ -300,7 +300,7 @@ def get_cytoscape(json_object, json_object2):
                 responsive=True,
                 minZoom=0.2,
                 maxZoom=2,
-                elements=get_elements(data_format, mapping),
+                elements=get_elements(data_format, None),
                 layout={'name': 'preset'},
                 stylesheet=default_stylesheet
             )]
