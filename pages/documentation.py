@@ -10,6 +10,6 @@ def create_layout():
         ], className="screen_division_left"),
         html.Div([
             topbar.create_layout(),
-            html.P('documentation')
+            html.P("COMING SOON", className="coming_soon_text")
         ], className="screen_division_right"),
-    ])
+    ], className="documentation_main")

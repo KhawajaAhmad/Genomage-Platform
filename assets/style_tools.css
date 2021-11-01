@@ -23,6 +23,7 @@
 }
 .tools_analysis{
     padding: 0px 20px;
+    font-size: 16px;
     float: right;
     display: inline-block;
     margin-right: 38px;
@@ -48,4 +49,46 @@
     color: #838B83;
     font-size: 14px;
     font-weight: 600;
+}
+@media only screen and (min-width: 1920px){
+    .tools_title{
+        font-size: 22px;
+    }
+    .tools_toggle{
+        font-size: 18px;
+    }
+    .tools_boxes{
+        height: 160px;
+        width: 250px;
+    }
+    .tools_boxes_head{
+        font-size: 22px;
+    }
+    .tools_boxes_text{
+        font-size: 18px;
+    }
+    .tools_analysis{
+        font-size: 20px;
+    }
+}
+@media only screen and (min-width: 2500px){
+    .tools_title{
+        font-size: 26px;
+    }
+    .tools_toggle{
+        font-size: 20px;
+    }
+    .tools_boxes{
+        height: 180px;
+        width: 260px;
+    }
+    .tools_boxes_head{
+        font-size: 24px;
+    }
+    .tools_boxes_text{
+        font-size: 22px;
+    }
+    .tools_analysis{
+        font-size: 24px;
+    }
 }

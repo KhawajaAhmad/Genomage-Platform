@@ -1,6 +1,7 @@
 from utils.import_utils import *
 from app import app
 from pages import sidebar, topbar
+import pandas as pd
 
 
 def cards(image, text, card_id):
@@ -31,8 +32,7 @@ def radio_items(options, id):
 def modal_content(modal_id):
     if modal_id == "analysis_type_modal":
         options = [{'label': 'WGS', 'value': 'WGS'},
-                   {'label': 'WES', 'value': 'WES'},
-                   {'label': 'RNA Seq', 'value': 'rna'}]
+                   {'label': 'WES', 'value': 'WES'}]
         return html.Div([
             radio_items(options, "analysis_type_radio")
         ])
@@ -48,39 +48,61 @@ def modal_content(modal_id):
         return html.Div([
             html.P("Input File:", className="modal_sub_headings"),
             radio_items(options, "data_format1"),
+            dbc.Collapse(
+                dbc.Card(dbc.CardBody([
+                    html.Div(
+                        [
+                            dbc.Checklist(
+                                options=[
+                                    {"label": "mark duplicated and read group", "value": 1},
+                                ],
+                                value=[],
+                                id="bam_switch",
+                                switch=True,
+                                className="bam_switch"
+                            ),
+                        ]
+                    )
+                ]), style={'border': 'none'}
+                ),
+                id="collapse_bam",
+                is_open=False,
+            ),
             html.P("Reference Genome", className="modal_sub_headings"),
             radio_items(options2, "data_format2")
         ])
     elif modal_id == "qc_modal":
-        options = [{'label': 'FASTQC', 'value': 'fastqc'},
-                   {'label': 'FASTP', 'value': 'fastp'}]
+        options = [{'label': 'FASTQC', 'value': 'fastqc'}]
         return html.Div([
             radio_items(options, "qc_radio")
         ])
     elif modal_id == "trimming_modal":
         options = [{'label': 'Trimomatic', 'value': 'trimomatic'},
-                   {'label': 'Cutadapt', 'value': 'cutadapt'}]
+                   {'label': 'Fastp', 'value': 'fastp'}]
         return html.Div([
             radio_items(options, "trimming_radio")
+        ])
+    elif modal_id == "trimming_modal1":
+        options = [{'label': 'Trimomatic', 'value': 'trimomatic'},
+                   {'label': 'Fastp', 'value': 'fastp'}]
+        return html.Div([
+            radio_items(options, "trimming_radio1")
         ])
     elif modal_id == "reference_genome_index_modal":
         options = [{'label': 'SAM Tools', 'value': 'sam'},
                    {'label': 'BWA', 'value': 'bwa'},
-                   {'label': 'Bowtie2', 'value': 'bowtie2'},
-                   {'label': 'PiCard Tools', 'value': 'picard'}]
-        options2 = [{'label': 'fastq.gz', 'value': 'fastq.gz'},
-                    {'label': 'fa.gz', 'value': 'fa.gz'},
-                    {'label': 'fasta', 'value': 'fasta'}]
+                   {'label': 'Bowtie2', 'value': 'bowtie2'}]
+        options2 = [{'label': 'GRCH37/hg19', 'value': 'GRCH37/hg19'},
+                    {'label': 'GRCH38/hg38', 'value': 'GRCH38/hg38'}]
         return html.Div([
             html.P("Set a Tool:", className="modal_sub_headings"),
             radio_items(options, "reference_genome_tool_index_radio"),
-            html.P("Set a data format", className="modal_sub_headings"),
+            html.P("Ref. genome version", className="modal_sub_headings"),
             radio_items(options2, "reference_genome_dataformat_index_radio")
         ])
 
     elif modal_id == "alignment_modal":
-        options = [{'label': 'SAM Tools', 'value': 'sam'},
-                   {'label': 'BWA', 'value': 'bwa'},
+        options = [{'label': 'BWA', 'value': 'bwa'},
                    {'label': 'Bowtie2', 'value': 'bowtie2'}]
         return html.Div([
             radio_items(options, "alignment_radio")
@@ -90,36 +112,153 @@ def modal_content(modal_id):
         return html.Div([
             radio_items(options, "duplicates_radio")
         ])
-    elif modal_id == "BQSR_modal":
+    elif modal_id == "duplicates_modal1":
         options = [{'label': 'Picard Tools', 'value': 'picard'}]
+        return html.Div([
+            radio_items(options, "duplicates_radio1")
+        ])
+    elif modal_id == "BQSR_modal":
+        options = [{'label': 'gatk BaseRecalibrator', 'value': 'gatk BaseRecalibrator'},
+                   {'label': 'gatk ApplyBQSR', 'value': 'gatk ApplyBQSR'}]
         return html.Div([
             radio_items(options, "BQSR_radio")
         ])
+    elif modal_id == "BQSR_modal1":
+        options = [{'label': 'gatk BaseRecalibrator', 'value': 'gatk BaseRecalibrator'},
+                   {'label': 'gatk ApplyBQSR', 'value': 'gatk ApplyBQSR'}]
+        return html.Div([
+            radio_items(options, "BQSR_radio1")
+        ])
+    elif modal_id == "BQSR_modal2":
+        options = [{'label': 'gatk BaseRecalibrator', 'value': 'gatk BaseRecalibrator'},
+                   {'label': 'gatk ApplyBQSR', 'value': 'gatk ApplyBQSR'}]
+        return html.Div([
+            radio_items(options, "BQSR_radio2")
+        ])
     elif modal_id == "variant_calling_modal":
-        options = [{'label': 'Mutect 2', 'value': 'mutect'},
-                   {'label': 'Haplotype', 'value': 'haplotype'},
+        options = [{'label': 'gatk Mutect2', 'value': 'gatk Mutect2'},
+                   {'label': 'gatk HaplotypeCaller', 'value': 'gatk HaplotypeCaller'},
                    {'label': 'DeepVariant', 'value': 'deepvariant'}]
         return html.Div([
             radio_items(options, "variant_calling_radio")
         ])
-    elif modal_id == "variant_filt_ration_modal":
-        options = [{'label': 'bcftools', 'value': 'bcftools'}]
+    elif modal_id == "variant_calling_modal1":
+        options = [{'label': 'gatk Mutect2', 'value': 'gatk Mutect2'},
+                   {'label': 'gatk HaplotypeCaller', 'value': 'gatk HaplotypeCaller'},
+                   {'label': 'DeepVariant', 'value': 'deepvariant'}]
         return html.Div([
-            radio_items(options, "variant_filt_ration_radio")
+            radio_items(options, "variant_calling_radio1")
+        ])
+    elif modal_id == "variant_calling_modal2":
+        options = [{'label': 'gatk Mutect2', 'value': 'gatk Mutect2'},
+                   {'label': 'gatk HaplotypeCaller', 'value': 'gatk HaplotypeCaller'},
+                   {'label': 'DeepVariant', 'value': 'deepvariant'}]
+        return html.Div([
+            radio_items(options, "variant_calling_radio2")
+        ])
+    elif modal_id == "variant_filtration_modal":
+        options = [{'label': 'bcftools', 'value': 'bcftools'},
+                   {'label': 'gatk', 'value': 'gatk'}]
+        return html.Div([
+            radio_items(options, "variant_filtration_radio")
+        ])
+    elif modal_id == "variant_filtration_modal1":
+        options = [{'label': 'bcftools', 'value': 'bcftools'},
+                   {'label': 'gatk', 'value': 'gatk'}]
+        return html.Div([
+            radio_items(options, "variant_filtration_radio1")
+        ])
+    elif modal_id == "variant_filtration_modal2":
+        options = [{'label': 'bcftools', 'value': 'bcftools'},
+                   {'label': 'gatk', 'value': 'gatk'}]
+        return html.Div([
+            radio_items(options, "variant_filtration_radio2")
         ])
     elif modal_id == "computing_power_modal":
         options = [{'label': 'High', 'value': 'high'},
                    {'label': 'Medium', 'value': 'medium'},
                    {'label': 'Low', 'value': 'low'}]
         return html.Div([
-            # radio_items(options, "computing_power_radio"),
+            html.Div([
+                dcc.Slider(
+                    className="computing_power_slider",
+                    min=1,
+                    max=3,
+                    value=1,
+                    step=None,
+                    id="computing_power_radio",
+                    marks={
+                        1: {'label': 'low', 'style': {'color': '#004677', 'font-size': 14}},
+                        2: {'label': 'medium', 'style': {'color': '#004677', 'font-size': 14}},
+                        3: {'label': 'high', 'style': {'color': '#004677', 'font-size': 14}},
+                    },
+                ),
+                html.Div([
+                    html.P("RAM: 10GB", className="modal_box_text"),
+                    html.P("CPU: 7GHz", className="modal_box_text"),
+                    html.P("Estimated Cost: $10", className="modal_box_text")
+                ], className="modal_box"),
+                html.Div([
+                    html.P("RAM: 10GB", className="modal_box_text"),
+                    html.P("CPU: 7GHz", className="modal_box_text"),
+                    html.P("Estimated Cost: $10", className="modal_box_text")
+                ], className="modal_box"),
+                html.Div([
+                    html.P("RAM: 10GB", className="modal_box_text"),
+                    html.P("CPU: 7GHz", className="modal_box_text"),
+                    html.P("Estimated Cost: $10", className="modal_box_text")
+                ], className="modal_box"),
+            ], style={'text-align': 'center', 'padding': "20px 0px"}),
+        ])
+    elif modal_id == "computing_power_modal1":
+        options = [{'label': 'High', 'value': 'high'},
+                   {'label': 'Medium', 'value': 'medium'},
+                   {'label': 'Low', 'value': 'low'}]
+        return html.Div([
+            html.Div([
+                dcc.Slider(
+                    className="computing_power_slider",
+                    min=1,
+                    max=3,
+                    value=1,
+                    step=None,
+                    id="computing_power_radio1",
+                    marks={
+                        1: {'label': 'low', 'style': {'color': '#004677', 'font-size': 14}},
+                        2: {'label': 'medium', 'style': {'color': '#004677', 'font-size': 14}},
+                        3: {'label': 'high', 'style': {'color': '#004677', 'font-size': 14}},
+                    },
+                ),
+                html.Div([
+                    html.P("RAM: 10GB", className="modal_box_text"),
+                    html.P("CPU: 7GHz", className="modal_box_text"),
+                    html.P("Estimated Cost: $10", className="modal_box_text")
+                ], className="modal_box"),
+                html.Div([
+                    html.P("RAM: 10GB", className="modal_box_text"),
+                    html.P("CPU: 7GHz", className="modal_box_text"),
+                    html.P("Estimated Cost: $10", className="modal_box_text")
+                ], className="modal_box"),
+                html.Div([
+                    html.P("RAM: 10GB", className="modal_box_text"),
+                    html.P("CPU: 7GHz", className="modal_box_text"),
+                    html.P("Estimated Cost: $10", className="modal_box_text")
+                ], className="modal_box"),
+            ], style={'text-align': 'center', 'padding': "20px 0px"}),
+        ])
+    elif modal_id == "computing_power_modal2":
+        options = [{'label': 'High', 'value': 'high'},
+                   {'label': 'Medium', 'value': 'medium'},
+                   {'label': 'Low', 'value': 'low'}]
+        return html.Div([
             html.Div([
                 dcc.Slider(
                     className="computing_power_slider",
                     min=1,
                     max=3,
                     step=None,
-                    id="computing_power_radio",
+                    value=1,
+                    id="computing_power_radio2",
                     marks={
                         1: {'label': 'low', 'style': {'color': '#004677', 'font-size': 14}},
                         2: {'label': 'medium', 'style': {'color': '#004677', 'font-size': 14}},
@@ -224,16 +363,33 @@ def create_layout():
                         get_modal("qc_modal", "qc_close", "qc_save", "Quality Control"),
                         get_modal("trimming_modal", "trimming_close", "trimming_save",
                                   "Read Manipulation/ Trimming"),
+                        get_modal("trimming_modal1", "trimming_close1", "trimming_save1",
+                                  "Read Manipulation/ Trimming"),
                         get_modal("reference_genome_index_modal", "reference_genome_index_close",
                                   "reference_genome_index_save", "Reference Genome Index"),
                         get_modal("alignment_modal", "alignment_close", "alignment_save", "Alignment"),
                         get_modal("duplicates_modal", "duplicates_close", "duplicates_save", "Mark Duplicates"),
+                        get_modal("duplicates_modal1", "duplicates_close1", "duplicates_save1", "Mark Duplicates"),
                         get_modal("BQSR_modal", "BQSR_close", "BQSR_save", "BQSR"),
+                        get_modal("BQSR_modal1", "BQSR_close1", "BQSR_save1", "BQSR"),
+                        get_modal("BQSR_modal2", "BQSR_close2", "BQSR_save2", "BQSR"),
                         get_modal("variant_calling_modal", "variant_calling_close", "variant_calling_save",
                                   "variant Calling"),
-                        get_modal("variant_filt_ration_modal", "variant_filt_ration_close",
-                                  "variant_filt_ration_save", "variant filt ration"),
+                        get_modal("variant_calling_modal1", "variant_calling_close1", "variant_calling_save1",
+                                  "variant Calling"),
+                        get_modal("variant_calling_modal2", "variant_calling_close2", "variant_calling_save2",
+                                  "variant Calling"),
+                        get_modal("variant_filtration_modal", "variant_filtration_close",
+                                  "variant_filtration_save", "variant filtration"),
+                        get_modal("variant_filtration_modal1", "variant_filtration_close1",
+                                  "variant_filtration_save1", "variant filtration"),
+                        get_modal("variant_filtration_modal2", "variant_filtration_close2",
+                                  "variant_filtration_save2", "variant filtration"),
                         get_modal2("computing_power_modal", "computing_power_close", "computing_power_save",
+                                   "computing Power"),
+                        get_modal2("computing_power_modal1", "computing_power_close1", "computing_power_save1",
+                                   "computing Power"),
+                        get_modal2("computing_power_modal2", "computing_power_close2", "computing_power_save2",
                                    "computing Power"),
                         html.Div(html.Div(cards("assets/img1.png", "Select Analysis Type", 'analysis_type')),
                                  className="visible_div"),
@@ -286,6 +442,12 @@ app.callback(
     [State("trimming_modal", "is_open")])(toggle_modal)
 
 app.callback(
+    Output("trimming_modal1", "is_open"),
+    [Input("trimming1", "n_clicks"), Input("trimming_close1", "n_clicks"),
+     Input("trimming_save1", "n_clicks")],
+    [State("trimming_modal1", "is_open")])(toggle_modal)
+
+app.callback(
     Output("reference_genome_index_modal", "is_open"),
     [Input("reference_genome_index", "n_clicks"), Input("reference_genome_index_close", "n_clicks"),
      Input("reference_genome_index_save", "n_clicks")],
@@ -304,10 +466,26 @@ app.callback(
     [State("duplicates_modal", "is_open")])(toggle_modal)
 
 app.callback(
+    Output("duplicates_modal1", "is_open"),
+    [Input("duplicates1", "n_clicks"), Input("duplicates_close1", "n_clicks"),
+     Input("duplicates_save1", "n_clicks")],
+    [State("duplicates_modal1", "is_open")])(toggle_modal)
+
+app.callback(
     Output("BQSR_modal", "is_open"),
     [Input("BQSR", "n_clicks"), Input("BQSR_close", "n_clicks"),
      Input("BQSR_save", "n_clicks")],
     [State("BQSR_modal", "is_open")])(toggle_modal)
+app.callback(
+    Output("BQSR_modal1", "is_open"),
+    [Input("BQSR1", "n_clicks"), Input("BQSR_close1", "n_clicks"),
+     Input("BQSR_save1", "n_clicks")],
+    [State("BQSR_modal1", "is_open")])(toggle_modal)
+app.callback(
+    Output("BQSR_modal2", "is_open"),
+    [Input("BQSR2", "n_clicks"), Input("BQSR_close2", "n_clicks"),
+     Input("BQSR_save2", "n_clicks")],
+    [State("BQSR_modal2", "is_open")])(toggle_modal)
 
 app.callback(
     Output("variant_calling_modal", "is_open"),
@@ -316,16 +494,64 @@ app.callback(
     [State("variant_calling_modal", "is_open")])(toggle_modal)
 
 app.callback(
-    Output("variant_filt_ration_modal", "is_open"),
-    [Input("variant_filt_ration", "n_clicks"), Input("variant_filt_ration_close", "n_clicks"),
-     Input("variant_filt_ration_save", "n_clicks")],
-    [State("variant_filt_ration_modal", "is_open")])(toggle_modal)
+    Output("variant_calling_modal1", "is_open"),
+    [Input("variant_calling1", "n_clicks"), Input("variant_calling_close1", "n_clicks"),
+     Input("variant_calling_save1", "n_clicks")],
+    [State("variant_calling_modal1", "is_open")])(toggle_modal)
+app.callback(
+    Output("variant_calling_modal2", "is_open"),
+    [Input("variant_calling2", "n_clicks"), Input("variant_calling_close2", "n_clicks"),
+     Input("variant_calling_save2", "n_clicks")],
+    [State("variant_calling_modal2", "is_open")])(toggle_modal)
+
+
+app.callback(
+    Output("variant_filtration_modal", "is_open"),
+    [Input("variant_filtration", "n_clicks"), Input("variant_filtration_close", "n_clicks"),
+     Input("variant_filtration_save", "n_clicks")],
+    [State("variant_filtration_modal", "is_open")])(toggle_modal)
+
+app.callback(
+    Output("variant_filtration_modal1", "is_open"),
+    [Input("variant_filtration1", "n_clicks"), Input("variant_filtration_close1", "n_clicks"),
+     Input("variant_filtration_save1", "n_clicks")],
+    [State("variant_filtration_modal1", "is_open")])(toggle_modal)
+
+app.callback(
+    Output("variant_filtration_modal2", "is_open"),
+    [Input("variant_filtration2", "n_clicks"), Input("variant_filtration_close2", "n_clicks"),
+     Input("variant_filtration_save2", "n_clicks")],
+    [State("variant_filtration_modal2", "is_open")])(toggle_modal)
 
 app.callback(
     Output("computing_power_modal", "is_open"),
     [Input("computing_power", "n_clicks"), Input("computing_power_close", "n_clicks"),
      Input("computing_power_save", "n_clicks")],
     [State("computing_power_modal", "is_open")])(toggle_modal)
+
+app.callback(
+    Output("computing_power_modal1", "is_open"),
+    [Input("computing_power1", "n_clicks"), Input("computing_power_close1", "n_clicks"),
+     Input("computing_power_save1", "n_clicks")],
+    [State("computing_power_modal1", "is_open")])(toggle_modal)
+
+app.callback(
+    Output("computing_power_modal2", "is_open"),
+    [Input("computing_power2", "n_clicks"), Input("computing_power_close2", "n_clicks"),
+     Input("computing_power_save2", "n_clicks")],
+    [State("computing_power_modal2", "is_open")])(toggle_modal)
+
+
+@app.callback(
+    Output("collapse_bam", "is_open"),
+    [Input("data_format1", "value")],
+    [State("collapse_bam", "is_open")],
+)
+def toggle_collapse(n, is_open):
+    if n == "bam":
+        return not is_open
+    elif n == "fastq" or n == "fastq.gz":
+        return is_open
 
 
 @app.callback(Output("visible_div1", "children"),
@@ -334,98 +560,209 @@ app.callback(
 def invisible_div(n1, v1):
     if n1 and v1:
         return html.Div(cards("assets/img2.png", "Select Data Format", 'data_format'))
-    return html.Div(cards("assets/img2.png", "Select Data Format", 'data_format'))
 
 
-@app.callback(Output("visible_div2", "children"),
-              Input("data_format_save", "n_clicks"),
+@app.callback([Output("visible_div2", "children"), Output('data-format-store', 'data')],
+              [Input("data_format_save", "n_clicks"),
+               Input("data_format1", "value"), Input("bam_switch", "value")],
               [State("data_format1", "value"),
-               State("data_format2", "value")])
-def invisible_div(n1, v1, v2):
-    if n1 and v1 and v2:
-        return html.Div(cards("assets/img3.png", "Quality Control", 'qc'))
-    return html.Div(cards("assets/img3.png", "Quality Control", 'qc'))
+               State("data_format2", "value")], prevent_initial_call=True)
+def invisible_div(n1, value, s, v1, v2):
+    n_switches = len(s)
+    if value is not None:
+        data_format_list = [value]
+        data_format_df = pd.DataFrame({'value': data_format_list})
+        if value == "fastq" or value == "fastq.gz":
+            if n1 and v1 and v2:
+                return html.Div(cards("assets/img3.png", "Quality Control", 'qc')), \
+                       data_format_df.to_json(date_format='iso', orient='split')
+        elif value == "bam":
+            if n_switches == 1:
+                if n1 and v1 and v2:
+                    return html.Div(cards("assets/img8.png", "BQSR", 'BQSR')), \
+                           data_format_df.to_json(date_format='iso', orient='split')
+            elif n_switches != 1:
+                if n1 and v1 and v2:
+                    return html.Div(cards("assets/img4.png", "Read Manipulation/ Trimming", 'trimming')), \
+                           data_format_df.to_json(date_format='iso', orient='split')
+    return html.Div(), None
 
 
 @app.callback(Output("visible_div3", "children"),
-              Input("qc_save", "n_clicks"),
-              State("qc_radio", "value"))
-def invisible_div(n1, v1):
-    if n1 and v1:
-        return html.Div(cards("assets/img4.png", "Read Manipulation/ Trimming", 'trimming'))
-    return html.Div(cards("assets/img4.png", "Read Manipulation/ Trimming", 'trimming'))
+              [Input("qc_save", "n_clicks"), Input("BQSR_save", "n_clicks"), Input("trimming_save", "n_clicks"),
+               Input("data_format1", "value"), Input("bam_switch", "value")],
+              [State("qc_radio", "value"),
+               State("BQSR_radio", "value"),
+               State("trimming_radio", "value")])
+def invisible_div(n1, n2, n3, value, s, v1, v2, v3):
+    n_switches = len(s)
+    if value == "fastq" or value == "fastq.gz":
+        if n1 and v1:
+            return html.Div(cards("assets/img4.png", "Read Manipulation/ Trimming", 'trimming1'))
+    elif value == "bam":
+        if n_switches == 1:
+            if n2 and v2:
+                return html.Div(cards("assets/img9.png", "Variant Calling", 'variant_calling'))
+        elif n_switches != 1:
+            if n3 and v3:
+                return html.Div(cards("assets/img7.png", "Mark Duplicates", 'duplicates'))
 
 
 @app.callback(Output("visible_div4", "children"),
-              Input("trimming_save", "n_clicks"),
-              State("trimming_radio", "value"))
-def invisible_div(n1, v1):
-    if n1 and v1:
-        return html.Div(cards("assets/img5.png", "Reference Genome Index", 'reference_genome_index'))
-    return html.Div(cards("assets/img5.png", "Reference Genome Index", 'reference_genome_index'))
+              [Input("trimming_save1", "n_clicks"), Input("variant_calling_save", "n_clicks"),
+               Input("duplicates_save", "n_clicks"),
+               Input("data_format1", "value"), Input("bam_switch", "value")],
+              [State("trimming_radio1", "value"),
+               State("variant_calling_radio", "value"),
+               State("duplicates_radio", "value")])
+def invisible_div(n1, n2, n3, value, s, v1, v2, v3):
+    n_switches = len(s)
+    if value == "fastq" or value == "fastq.gz":
+        if n1 and v1:
+            return html.Div(cards("assets/img5.png", "Reference Genome Index", 'reference_genome_index'))
+    elif value == "bam":
+        if n_switches == 1:
+            if n2 and v2:
+                return html.Div(cards("assets/img10.png", "Variant Filtration", 'variant_filtration'))
+        elif n_switches != 1:
+            if n3 and v3:
+                return html.Div(cards("assets/img8.png", "BQSR", 'BQSR1'))
 
 
 @app.callback(Output("visible_div5", "children"),
-              Input("reference_genome_index_save", "n_clicks"),
+              [Input("reference_genome_index_save", "n_clicks"), Input("variant_filtration_save", "n_clicks"),
+               Input("BQSR_save1", "n_clicks"),
+               Input("data_format1", "value"), Input("bam_switch", "value")],
               [State("reference_genome_tool_index_radio", "value"),
-               State('reference_genome_dataformat_index_radio', 'value')])
-def invisible_div(n1, v1, v2):
-    if n1 and v1 and v2:
-        return html.Div(cards("assets/img6.png", "Alignment", 'alignment'))
-    return html.Div(cards("assets/img6.png", "Alignment", 'alignment'))
+               State("reference_genome_dataformat_index_radio", "value"),
+               State("variant_filtration_radio", "value"),
+               State("BQSR_radio1", "value")])
+def invisible_div(n1, n2, n3, value, s, v1, v2, v3, v4):
+    n_switches = len(s)
+    if value == "fastq" or value == "fastq.gz":
+        if n1 and v1 and v2:
+            return html.Div(cards("assets/img6.png", "Alignment", 'alignment'))
+    elif value == "bam":
+        if n_switches == 1:
+            if n2 and v3:
+                return html.Div(cards("assets/img11.png", "Computing Power", 'computing_power'))
+        elif n_switches != 1:
+            if n3 and v4:
+                return html.Div(cards("assets/img9.png", "Variant Calling", 'variant_calling1'))
 
 
-@app.callback(Output("visible_div6", "children"),
-              Input("alignment_save", "n_clicks"),
-              State("alignment_radio", "value"))
-def invisible_div(n1, v1):
-    if n1 and v1:
-        return html.Div(cards("assets/img7.png", "Mark Duplicates", 'duplicates'))
-    return html.Div(cards("assets/img7.png", "Mark Duplicates", 'duplicates'))
+@app.callback([Output("visible_div6", "children"), Output('mapping-store', 'data')],
+              [Input("alignment_save", "n_clicks"), Input("computing_power_save", "n_clicks"),
+               Input("variant_calling_save1", "n_clicks"),
+               Input("data_format1", "value"), Input("bam_switch", "value")],
+              [State("alignment_radio", "value"),
+               State("computing_power_radio", "value"),
+               State("variant_calling_radio1", "value")])
+def invisible_div(n1, n2, n3, value, s, v1, v2, v3):
+    n_switches = len(s)
+    if value == "fastq" or value == "fastq.gz":
+        mapping_df = pd.DataFrame({'value': [v1]})
+        if n1 and v1:
+            return html.Div(cards("assets/img7.png", "Mark Duplicates", 'duplicates1')), \
+                   mapping_df.to_json(date_format='iso', orient='split')
+    elif value == "bam":
+        if n_switches == 1:
+            if n2 and v2:
+                return html.Div(
+                    dbc.Button("Finish Setup", color="success", className="pipeline_finish_button",
+                               href="/get_data")), None
+        elif n_switches != 1:
+            if n3 and v3:
+                return html.Div(cards("assets/img10.png", "Variant Filtration", 'variant_filtration1')), None
+    return html.Div(), None
+
 
 @app.callback(Output("visible_div7", "children"),
-              Input("duplicates_save", "n_clicks"),
-              State("duplicates_radio", "value"))
-def invisible_div(n1, v1):
-    if n1 and v1:
-        return html.Div(cards("assets/img8.png", "BQSR", 'BQSR'))
-    return html.Div(cards("assets/img8.png", "BQSR", 'BQSR'))
+              [Input("duplicates_save1", "n_clicks"),
+               Input("variant_filtration_save1", "n_clicks"),
+               Input("data_format1", "value"), Input("bam_switch", "value")],
+              [State("duplicates_radio1", "value"),
+               State("variant_filtration_radio1", "value")])
+def invisible_div(n1, n2, value, s, v1, v2):
+    n_switches = len(s)
+    if value == "fastq" or value == "fastq.gz":
+        if n1 and v1:
+            return html.Div(cards("assets/img8.png", "BQSR", 'BQSR2'))
+    elif value == "bam":
+        if n_switches == 1:
+            return
+        elif n_switches != 1:
+            if n2 and v2:
+                return html.Div(cards("assets/img11.png", "Computing Power", 'computing_power1'))
 
 
 @app.callback(Output("visible_div8", "children"),
-              Input("BQSR_save", "n_clicks"),
-              State("BQSR_radio", "value"))
-def invisible_div(n1, v1):
-    if n1 and v1:
-        return html.Div(cards("assets/img9.png", "Variant Calling", 'variant_calling'))
-    return html.Div(cards("assets/img9.png", "Variant Calling", 'variant_calling'))
+              [Input("BQSR_save2", "n_clicks"),
+               Input("computing_power_save1", "n_clicks"),
+               Input("data_format1", "value"), Input("bam_switch", "value")],
+              [State("BQSR_radio2", "value"),
+               State("computing_power_radio1", "value")])
+def invisible_div(n1, n2, value, s, v1, v2):
+    n_switches = len(s)
+    if value == "fastq" or value == "fastq.gz":
+        if n1 and v1:
+            return html.Div(cards("assets/img9.png", "Variant Calling", 'variant_calling2'))
+    elif value == "bam":
+        if n_switches == 1:
+            return
+        elif n_switches != 1:
+            if n2 and v2:
+                return html.Div(
+                    dbc.Button("Finish Setup", color="success", className="pipeline_finish_button", href="/get_data"))
 
 
 @app.callback(Output("visible_div9", "children"),
-              Input("variant_calling_save", "n_clicks"),
-              State("variant_calling_radio", "value"))
-def invisible_div(n1, v1):
-    if n1 and v1:
-        return html.Div(cards("assets/img10.png", "Variant Filtration", 'variant_filt_ration'))
-    return html.Div(cards("assets/img10.png", "Variant Filtration", 'variant_filt_ration'))
+              [Input("variant_calling_save2", "n_clicks"),
+               Input("data_format1", "value"), Input("bam_switch", "value")],
+              State("variant_calling_radio2", "value"))
+def invisible_div(n1, value, s, v1):
+    n_switches = len(s)
+    if value == "fastq" or value == "fastq.gz":
+        if n1 and v1:
+            return html.Div(cards("assets/img10.png", "Variant Filtration", 'variant_filtration2'))
+    elif value == "bam":
+        if n_switches == 1:
+            return
+        elif n_switches != 1:
+            return
 
 
 @app.callback(Output("visible_div10", "children"),
-              Input("variant_filt_ration_save", "n_clicks"),
-              State("variant_filt_ration_radio", "value"))
-def invisible_div(n1, v1):
-    if n1 and v1:
-        return html.Div(cards("assets/img11.png", "Computing Power", 'computing_power'))
-    return html.Div(cards("assets/img11.png", "Computing Power", 'computing_power'))
+              [Input("variant_filtration_save2", "n_clicks"),
+               Input("data_format1", "value"), Input("bam_switch", "value")],
+              State("variant_filtration_radio2", "value"))
+def invisible_div(n1, value, s, v1):
+    n_switches = len(s)
+    if value == "fastq" or value == "fastq.gz":
+        if n1 and v1:
+            return html.Div(cards("assets/img11.png", "Computing Power", 'computing_power2'))
+    elif value == "bam":
+        if n_switches == 1:
+            return
+        elif n_switches != 1:
+            return
 
 
 @app.callback(Output("visible_div11", "children"),
-              Input("computing_power_save", "n_clicks"),
-              State("computing_power_radio", "value"))
-def invisible_div(n1, v1):
-    if n1 and v1:
-        return html.Div(dbc.Button("Finish Setup", color="success", className="pipeline_finish_button", href="/get_data"))
-    return html.Div(dbc.Button("Finish Setup", color="success", className="pipeline_finish_button", href="/get_data"))
+              [Input("computing_power_save2", "n_clicks"),
+               Input("data_format1", "value"), Input("bam_switch", "value"),
+               Input("computing_power_radio2", "value")])
+def invisible_div(n1, value, s, v1):
+    n_switches = len(s)
+    if value == "fastq" or value == "fastq.gz":
+        if n1 and v1:
+            return html.Div(
+                dbc.Button("Finish Setup", color="success", className="pipeline_finish_button", href="/get_data"))
+    elif value == "bam":
+        if n_switches == 1:
+            return
+        elif n_switches != 1:
+            return
 
 
 @app.callback(
@@ -444,4 +781,3 @@ def output_text(value):
     if value is None:
         return "Analysis"
     return value
-

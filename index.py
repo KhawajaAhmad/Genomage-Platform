@@ -8,6 +8,8 @@ from app import app
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),
     html.Div(id='page-content'),
+    dcc.Store(id='data-format-store', storage_type='session'),
+    dcc.Store(id='mapping-store', storage_type='session'),
 ])
 
 
@@ -42,6 +44,6 @@ def display_page(pathname):
     return login_page.create_layout()
 
 
-# host='0.0.0.0', port=8080
+# host='0.0.0.0', port=80
 if __name__ == '__main__':
     app.run_server(host='0.0.0.0', port=8080)

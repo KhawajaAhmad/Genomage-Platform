@@ -52,3 +52,31 @@
     color: orange;
     display: inline-block;
 }
+@media only screen and (min-width: 1920px){
+    .notification_title{
+        font-size: 22px;
+    }
+    .notification_btn_text{
+        font-size: 22px;
+    }
+    .notification_date{
+        font-size: 20px;
+    }
+    .notification_btn_bullet{
+        font-size: 26px;
+    }
+}
+@media only screen and (min-width: 2500px){
+    .notification_title{
+        font-size: 26px;
+    }
+    .notification_btn_text{
+        font-size: 26px;
+    }
+    .notification_date{
+        font-size: 24px;
+    }
+    .notification_btn_bullet{
+        font-size: 30px;
+    }
+}

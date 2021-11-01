@@ -148,3 +148,61 @@
     width: 90%;
     margin: 20px auto 35px 10px;
 }
+.bam_switch{
+    font-size: 14px;
+}
+@media only screen and (min-width: 1920px){
+    .pipeline_title{
+        font-size: 22px;
+    }
+    .pipeline_save_as_draft{
+        font-size: 18px;
+    }
+    .pipeline_share_icon{
+        height: 24px;
+    }
+    .visible_div{
+        width: 180px !important;
+    }
+    .pipeline_card_img{
+        height: 38px;
+    }
+    .pipeline_card{
+        height: 140px;
+    }
+    .analysis_card_text{
+        font-size: 17px;
+    }
+    .pipeline_finish_button{
+        font-size: 18px;
+    }
+}
+@media only screen and (min-width: 2500px){
+    .pipeline_title{
+        font-size: 26px;
+    }
+    .pipeline_save_as_draft{
+        font-size: 22px;
+    }
+    .pipeline_share_icon{
+        height: 28px;
+    }
+    .visible_div{
+        width: 215px !important;
+    }
+    .pipeline_card_img{
+        margin: 25px auto 5px auto;
+        height: 48px;
+    }
+    .pipeline_card{
+        height: 170px;
+    }
+    .analysis_card_text{
+        font-size: 21px;
+    }
+    .pipeline_finish_button{
+        font-size: 22px;
+        padding: 5px 20px;
+        width: 150px;
+    }
+}

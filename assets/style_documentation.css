@@ -1,0 +1,10 @@
+.documentation_main{
+    background: #EDEDED;
+    min-height: 100vh;
+}
+.coming_soon_text{
+    font-size: 22px;
+    text-align: center;
+    margin: 150px auto;
+    font-weight: bold;
+}

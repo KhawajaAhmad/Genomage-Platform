@@ -1,0 +1,126 @@
+.new_project_main{
+    background: #EDEDED;
+    min-height: 100vh;
+}
+.new_project_head{
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0px 10px 95px;
+    color: #2A3F54;
+}
+.new_project_form_container{
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+.new_project_form{
+    width: 86%;
+    margin: 0px;
+    border-radius: 6px;
+    padding: 15px 80px 15px 10px;
+    margin: 0px 0px 30px 90px;
+    /*background: linear-gradient(to top left, #ffffff 2%, #306897 340%);*/
+    background: #F2F2F2;
+    border: 1px solid #2A3F54;
+    border-top: 8px solid #2A3F54;
+
+
+}
+.new_project_field{
+    height: 26px;
+    margin: 5px 0px;
+    width: 100%;
+    font-size: 14px;
+    color: #2A3F54;
+    padding: 3px 5px 0px 10px;
+    border: 1px solid lightgray !important;
+}
+.new_project_field:hover, .new_project_field:focus, .new_project_field:active, .new_project_field.active,
+.open>.dropdown-toggle.new_project_field{
+    border: 1px solid lightgray !important;
+    box-shadow: none !important;
+}
+textarea {
+    border: none;
+    overflow: auto;
+    outline: none;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+    resize: none; /*remove the resize handle on the bottom right*/
+}
+.new_project_label{
+    height: 26px;
+    margin: -15px 0px 0px 0px;
+    vertical-align: top;
+    font-weight: 600;
+    font-size: 14px;
+    color: #2A3F54;
+}
+.new_project_label_bold{
+    height: 26px;
+    font-weight: bold !important;
+    margin: 12px 0px 8px 0px;
+    font-size: 16px;
+    color: #2A3F54;
+}
+.new_project_dropdown{
+    margin: 5px 0px;
+    width: 100%;
+    font-size: 14px;
+    padding: 0px;
+}
+.new_project_save{
+    padding: 2px 20px;
+    margin: 15px 0px 15px 0px;
+    font-size: 14px;
+    font-weight: 500;
+}
+@media only screen and (min-width: 1920px){
+    .new_project_head{
+        font-size: 22px;
+    }
+    .new_project_field{
+        height: 30px;
+        font-size: 18x;
+    }
+    .new_project_label{
+        height: 30px;
+        font-size: 18px;
+    }
+    .new_project_label_bold{
+        height: 30px;
+        font-size: 20px;
+    }
+    .new_project_dropdown{
+        font-size: 18px;
+    }
+    .new_project_save{
+        font-size: 18px;
+    }
+}
+@media only screen and (min-width: 2500px){
+    .new_project_head{
+        font-size: 26px;
+    }
+    .new_project_field{
+        height: 34px;
+        font-size: 22x;
+    }
+    .new_project_label{
+        height: 34px;
+        font-size: 22px;
+    }
+    .new_project_label_bold{
+        height: 34px;
+        font-size: 24px;
+    }
+    .new_project_dropdown{
+        font-size: 22px;
+    }
+    .new_project_save{
+        font-size: 22px;
+    }
+}

@@ -1,0 +1,153 @@
+.pipeline_main{
+    background: #EDEDED;
+    min-height: 100vh;
+}
+.pipeline_sub_main{
+    width: 90%;
+    margin: 0px auto;
+    padding: 0px;
+}
+.pipeline_title{
+    color: #676767;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: left;
+    margin: 10px 0px 10px 12px;
+    padding: 10px 0px 0px 8px;
+    letter-spacing: 0.5px;
+    color: #373737;
+    display: inline-block;
+    vertical-align: -5px;
+}
+.pipeline_title_edit{
+    background-color: #EDEDED !important;
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0px;
+    margin: 0px;
+}
+.pipeline_save_as_draft{
+    float: right;
+    padding: 5px 15px;
+    font-size: 14px;
+    margin: 15px 0px 0px 0px;
+    color: #2A3F54;
+    font-weight: 600;
+    border: 1px solid #DF9704;
+    background: transparent;
+}
+.pipeline_save_as_draft:hover{
+    background-color: #DF9704 !important;
+    color: white;
+}
+.pipeline_save_as_draft:focus, .pipeline_save_as_draft:active, .pipeline_save_as_draft.active,
+.open>.dropdown-toggle.pipeline_save_as_draft{
+    background-color: #DF9704;
+    color: white;
+}
+.pipeline_share_icon{
+    display: inline-block;
+    margin: 0px 0px 0px 10px;
+    height: 25px;
+}
+.visible_div{
+    display: inline-block;
+    width: 160px !important;
+}
+.pipeline_card_img{
+    height: 32px;
+    width: auto;
+    margin: 10px auto 5px auto;
+}
+.pipeline_card{
+    margin: 15px;
+    padding: 8px 0px !important;
+    height: 115px;
+    border-radius: 6px;
+}
+.analysis_card_text{
+    padding: 0px 8px;
+    margin: 0px;
+    font-size: 13px;
+    text-align: center !important;
+    width: 100%;
+    position: absolute;
+    font-weight: 600;
+    bottom: 10px;
+}
+.pipeline_card_body{
+    padding: 0px;
+    text-align: center;
+}
+.pipeline_finish_button{
+    padding: 5px 0px;
+    width: 120px;
+    font-size: 14px;
+    margin: 45px auto 0px 18px;
+}
+.computing_power_slider{
+    width: 50%;
+    margin: auto;
+}
+
+.slider{
+    margin: 0px;
+    padding: 0px !important;
+    height: 3px !important;
+}
+.rc-slider-track {
+    margin-top: 0.5px;
+    background-color: #2A3F54;
+    height: 3px !important;
+}
+
+.rc-slider-dot-active {
+  border-color: #2A3F54;
+  border: solid 2px #2A3F54;
+}
+
+.rc-slider-handle {
+    background-color: #2A3F54;
+    border-color: #2A3F54;
+    height: 12px;
+    width: 12px;
+}
+
+.rc.slider-handle:hover {
+    border-color: #2A3F54;
+}
+
+.rc.slider-handle-active:active {
+    border-color: #2A3F54;
+}
+.modal_sub_headings{
+    color: #676767;
+    font-size: 14px;
+    font-weight: 600;
+    text-align: left;
+    margin: 0px 0px 10px 0px;
+    padding: 10px 0px 0px 8px;
+    letter-spacing: 0.5px;
+    color: #373737;
+}
+.modal_box{
+    height: 100px;
+    border: 1px solid #df9704;
+    border-top: 4px solid #df9704;
+    display: inline-block;
+    margin: 5px;
+}
+.modal_box_text{
+    font-size: 14px;
+    margin: 0px;
+    padding: 3px 25px 3px 10px;
+    text-align: left;
+}
+.title_modal_input{
+    height: 30px;
+    width: 90%;
+    margin: 20px auto 35px 10px;
+}
+.bam_switch{
+    font-size: 14px;
+}
