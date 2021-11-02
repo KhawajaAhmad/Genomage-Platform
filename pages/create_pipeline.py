@@ -4,6 +4,7 @@ from pages import sidebar, topbar
 import pandas as pd
 
 
+# =================================== Genomage =================================================
 def cards(image, text, card_id):
     return html.Div([
         dbc.Card([

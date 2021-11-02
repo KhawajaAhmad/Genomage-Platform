@@ -3,6 +3,7 @@ from app import app
 from pages import sidebar, topbar
 
 
+# =================================== Genomage =================================================
 def create_layout():
     return html.Div([
         html.Div([

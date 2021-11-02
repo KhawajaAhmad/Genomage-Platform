@@ -2,6 +2,7 @@ from utils.import_utils import *
 from app import app
 from pages import sidebar, topbar
 
+# =================================== Genomage =================================================
 layout = go.Layout(
     margin=go.layout.Margin(
         l=0,  # left margin

@@ -3,6 +3,7 @@ from app import app
 from pages import sidebar, topbar
 
 
+# =================================== Genomage =================================================
 def create_layout():
     return html.Div([
         html.Div([
@@ -19,7 +20,7 @@ def create_layout():
                 ], className="existing_pipeline_btn"),
                 dbc.Button([
                     html.P("※", className="existing_pipeline_btn_bullet"),
-                    html.P("BWA-DeepVarient", className="existing_pipeline_btn_text"),
+                    html.P("BWA-DeepVariant", className="existing_pipeline_btn_text"),
                     html.Img(src="assets/right_arrow.png", className="existing_pipeline_btn_icon")
                 ], className="existing_pipeline_btn"),
                 dbc.Button([

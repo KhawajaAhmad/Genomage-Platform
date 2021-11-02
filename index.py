@@ -4,6 +4,7 @@ from pages import login_page, dashboard, projects, analysis, tool_library, docum
 
 from app import app
 
+# =================================== Genomage =================================================
 # Setting up the layout
 app.layout = html.Div([
     dcc.Location(id='url', refresh=False),

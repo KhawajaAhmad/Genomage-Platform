@@ -3,6 +3,7 @@ from app import app
 from pages import sidebar, topbar
 
 
+# =================================== Genomage =================================================
 def Box(head, detail):
     return html.Div([
         html.P(head, className="tools_boxes_head"),

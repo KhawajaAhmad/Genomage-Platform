@@ -2,6 +2,7 @@ from utils.import_utils import *
 from app import app
 
 
+# =================================== Genomage =================================================
 def create_layout():
     return html.Div([
         dbc.Nav(

@@ -5,6 +5,7 @@ import pandas as pd
 import dash_cytoscape as cyto
 
 
+# =================================== Genomage =================================================
 default_stylesheet = [
     {
         "selector": "edge",
